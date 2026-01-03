@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Bus Tracker - Sign In</title>
+    <link rel="stylesheet" href="../login/styles.css"> 
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <div class="login-page-container">
+        <div class="login-box">
+            <div class="header-logo">
+               <h1><i class="fa-solid fa-bus-simple"></i> MY BUS TRACKER</h1>
+            </div>
+            
+            <h2>SIGN IN TO YOUR ROLE</h2>
+
+            <div class="role-selection">
+                <button type="button" class="role-btn student-btn" data-role="Student">Login as Student</button>
+                <button type="button" class="role-btn driver-btn" data-role="Driver">Login as Driver</button>
+                <button type="button" class="role-btn incharge-btn" data-role="Incharge">Login as Incharge</button>
+            </div>
+
+            <form id="loginForm">
+                <div class="input-group">
+                    <label for="username">Roll Number / Employee ID:</label>
+                    <input type="text" id="username" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" required>
+                </div>
+                <button type="submit" id="loginButton">LOGIN</button>
+                <p id="message" class="error-message"></p>
+                <input type="hidden" id="selectedRole" value="Student"> 
+                <div id="signupLinkContainer">
+                   <p>Don't have an account? <a href="#" id="toggleSignup" >Signup</a></p></div>
+            </form>
+           
+            <form id="signupForm" style="display: none;">
+            <div class="input-group">
+                <label>Full Name:</label>
+                <input type="text" id="regName" required>
+            </div>
+            <div class="input-group">
+                <label>UserName:</label>
+                <input type="text" id="regUsername" required>
+            </div>
+            <div class="input-group">
+                <label>Password:</label>
+                <input type="password" id="regPassword" required>
+            </div>
+            <div class="input-group">
+                <label style="color: red;">Secret Admin Key:</label>
+                <input type="password" id="adminSecret" required>
+            </div>
+            <button type="submit" id="loginButton">REGISTER</button>
+            <p style="margin-top: 10px;"><a href="#" id="backToLogin" > <i class="fa-solid fa-arrow-left-long"></i>Back to Login</a></p>
+            </form>
+         </div>
+    </div>
+
+    <script src="../login/login.js"></script>
+</body>
+</html>

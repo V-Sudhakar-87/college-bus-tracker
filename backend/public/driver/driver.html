@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driver Console | Live Tracking</title>
+    <link rel="stylesheet" href="driver.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
+</head>
+<body>
+
+    <div class="dashboard-wrapper">
+        <header class="main-header">
+            <div class="header-left">
+                <h2><i class="fas fa-bus-alt"></i> Driver Console</h2>
+            </div>
+            <div class="header-right">
+                <button id="logout-btn" class="logout-btn"><span class="logout-text"><i class="fas fa-sign-out-alt"></i> Logout</span>
+                <span class="logout-icon"><i class="fa-solid fa-power-off"></i></span></button>
+            </div>
+        </header>
+
+        <div class="main-body">
+            <aside class="sidebar">
+                <div class="sidebar-content">
+                    <h3>Live Tracking Control</h3>             
+                    <div class="card bus-info-card">
+                        <h4>Assigned Bus Details:</h4>
+                        <div class="info-item"><span>Logged in:</span><strong id="driver-name">Loading...</strong></div>
+                        <div class="info-item"><span>Reg No:</span> <strong id="bus-reg-no">N/A</strong></div>
+                        <div class="info-item"><span>Route:</span> <strong id="current-route-name">N/A</strong></div>
+                        <div class="info-item"><span>Status:</span> <span id="tracking-status" class="status-badge status-idle">IDLE</span></div>
+                    </div>
+
+                    <div class="card control-area">
+                        <h4>Control Panel:</h4>
+                        <div class="route-select-group">
+                            <label for="route-selector">Select Route to Start:</label>
+                            <select id="route-selector" disabled>
+                                <option value="">-- No Routes Assigned --</option>
+                            </select>
+                        </div>
+                        <div class="route-select-group">
+                            <label for="trip-type">Trip Type:</label>
+                            <select id="trip-type">
+                                <option value="morning">Morning</option>
+                                <option value="evening">Evening</option>
+                            </select>
+                        </div>
+
+                        <button id="start-tracking-btn" class="btn success-btn" disabled>
+                            <i class="fas fa-play"></i> START TRACKING
+                        </button>
+                        <button id="stop-tracking-btn" class="btn secondary-btn" disabled>
+                            <i class="fas fa-stop"></i> STOP TRACKING
+                        </button>
+
+                        <div class="location-debug">
+                            <p>Last Location:</p>
+                            <span id="last-location">Waiting for GPS...</span>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <main class="map-area">
+                <div id="route-map-placeholder" class="map-view"></div>
+            </main>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/nosleep/0.12.0/NoSleep.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="../driver/driver.js"></script>
+    <script src="../js/auth.js"></script>
+    <script>checkAuth("Driver");</script>
+
+</body>
+</html>

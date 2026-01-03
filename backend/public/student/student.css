@@ -1,0 +1,507 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Segoe UI", sans-serif;
+}
+
+/* HEADER */
+.student-header {
+    height: 60px;
+    background: #0f172a;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+}
+
+.student-header h2 {
+    font-size: 25px;
+}
+
+.menu-dot {
+  cursor: pointer;        
+  display: flex;
+  align-items: center;
+}
+/* Three dot icon */
+#studentMenuBtn {
+  font-size: 26px;        
+  cursor: pointer;       
+  padding: 8px;           
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+/*  LAYOUT  */
+.live-tracking-container {
+    padding: 12px;
+}
+
+.live-header-card {
+    background: #ffffff;
+    padding: 14px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+.live-status-pill {
+    background: #e6f4ea;
+    color: #2e7d32;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+/* CONTENT */
+.live-content-wrapper {
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+    height: calc(100vh - 120px);
+}
+
+/*  BUS LIST  */
+.bus-list-panel {
+    width: 320px;
+    background: #fff;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.search-container {
+    padding: 12px;
+    background: #f5f6f8;
+}
+
+.search-container input {
+    width: 100%;
+    padding: 8px 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.cards-scroll-area {
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px;
+}
+
+/* BUS CARD  */
+.bus-live-card {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-left: 4px solid #1a428a;
+    padding: 12px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: 0.25s;
+}
+
+.bus-live-card:hover {
+    background: #f0f4ff;
+    transform: translateY(-2px);
+}
+
+.bus-live-card.offline {
+    opacity: 0.6;
+}
+
+.bus-details h4 {
+    font-size: 15px;
+    color: #1a428a;
+}
+
+.bus-details p {
+    font-size: 13px;
+    color: #555;
+}
+
+.status-pill {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: #e8f5e9;
+    color: #2e7d32;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+}
+
+.pulse-dot {
+    height: 8px;
+    width: 8px;
+    background: #28a745;
+    border-radius: 50%;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(0.8); opacity: 1; }
+    70% { transform: scale(1.6); opacity: 0; }
+    100% { opacity: 0; }
+}
+
+/*  MAP */
+.map-display-panel {
+    flex: 1;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+#live-tracking-map {
+    width: 100%;
+    height: 100%;
+}
+
+/*  MOBILE */
+@media (max-width: 768px) {
+
+    .bus-list-panel {
+        width: 100%;
+        height: 100vh;
+    }
+
+    .map-display-panel {
+        position: fixed;
+        inset: 0;
+        width: 100vw;
+        height: 100vh;
+        background: #fff;
+        z-index: 9999;
+        display: none;
+        flex-direction: column;
+    }
+
+    /* Map open */
+    .map-display-panel.show {
+        display: flex;
+    }
+
+    #live-tracking-map {
+        flex: 1;
+        width: 100%;
+        height: 100%;
+    }
+
+   .mobile-map-header {
+    display: flex;
+    align-items: center;
+    
+    gap: 12px;
+    padding: 20px 24px;
+    background: linear-gradient(135deg, #1a428a, #0f2f66);
+    color: white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+/* Back Button */
+.mobile-map-header button {
+    color: #ffffff;
+    background-color: #1a428a;
+    border-radius: 20px;
+    width: 80px;
+    height: 32px;
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+    transition: all 0.25s ease;
+}
+
+.mobile-map-header button:hover {
+    background-color: #e8efff;
+    transform: translateY(-1px);
+}
+
+.mobile-map-header button:active {
+    transform: scale(0.95);
+}
+
+/* Live Map Title */
+.mobile-map-header .map-title {
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    flex: 1;
+    text-align: start;
+    user-select: none;
+    opacity: 0.95;
+}
+
+
+@keyframes livePulse {
+    0% { opacity: 0.6; }
+    50% { opacity: 1; }
+    100% { opacity: 0.6; }
+}
+
+.mobile-map-header .map-title::after {
+    content: " • LIVE";
+    font-size: 12px;
+    color: #ff4d4d;
+    animation: livePulse 1.5s infinite;
+}
+}
+
+/* Desktop – no change */
+@media (min-width: 769px) {
+    .mobile-map-header {
+        display: none;
+    }
+}
+
+/* WARNING  */
+.warning-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.warning-box {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    width: 280px;
+    text-align: center;
+}
+
+.warning-box h4 {
+    color: #d32f2f;
+    margin-bottom: 8px;
+}
+
+.warning-box button {
+    margin-top: 12px;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 6px;
+    background: #1a428a;
+    color: #fff;
+    cursor: pointer;
+}
+.leaflet-routing-container {
+    display: none !important;
+}
+
+.leaflet-routing-alt {
+    display: none !important;
+}
+.map-display-panel {
+    flex: 1;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+#live-tracking-map {
+    height: 100%;
+    width: 100%;
+}
+
+.bus-live-card.offline {
+    border-left: 4px solid #95a5a6; 
+    opacity: 0.7;
+}
+
+.bus-live-card.online {
+    border-left: 4px solid #28a745; 
+    opacity: 1;
+    background: #f0fff4;
+}
+
+.status-text {
+    font-size: 0.75rem;
+    color: #888;
+}
+
+.online .status-text {
+    color: #28a745;
+    font-weight: bold;
+}
+.bus-live-card.match {
+    border: 2px solid #22c55e;
+    background: #f0fdf4;
+}
+
+/* Overlay */
+.corner-overlay {
+    position: fixed;
+    inset: 0;
+    background: transparent;
+    display: none;
+    z-index: 998;
+}
+
+/* Corner Form */
+.corner-form {
+    position: fixed;
+    top: 60px;
+    right: 16px;
+    width: 280px;
+    background: #fff;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    display: none;
+    z-index: 999;
+    animation: popIn 0.2s ease;
+}
+
+@keyframes popIn {
+    from { transform: scale(0.9); opacity: 0; }
+    to   { transform: scale(1); opacity: 1; }
+}
+
+.corner-form h4 {
+    margin: 0;
+    color: #1a428a;
+    display: inline-block;
+}
+
+.corner-form small {
+    color: #666;
+    display: inline-block;
+}
+
+.corner-form hr {
+    margin: 10px 0;
+}
+
+.logout-btn {
+    width: 100%;
+    margin-top: 12px;
+    padding: 8px;
+    background: #f44336;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.corner-form h3{
+    display: inline-block;
+    
+}
+/* Student Corner Card Status */
+.status-badge {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+.status-online {
+    color: #2e7d32;
+    border: none;
+}
+
+.status-offline {
+    color: red;
+    border: none;
+}
+
+.status-online::before {
+    content: "●";
+    margin-right: 5px;
+    font-size: 12px;
+    animation: blink 1.5s infinite;
+}
+
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0.3; }
+    100% { opacity: 1; }
+}
+
+/* Bottom Sheet styling for Mobile */
+@media (max-width: 768px) {
+    .bottom-sheet {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 130px; 
+        background: white;
+        border-radius: 20px 20px 0 0;
+        z-index: 10001;
+        box-shadow: 0 -5px 15px rgba(0,0,0,0.2);
+        transition: height 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        display: flex;
+        flex-direction: column;
+    }
+
+    .bottom-sheet.expanded {
+        height: 55vh; 
+    }
+
+    .sheet-header {
+        padding: 30px;
+        cursor: pointer;
+        background: #f8fafc;
+        border-radius: 20px 20px 0 0;
+    }
+
+    .sheet-handle {
+        width: 40px;
+        height: 4px;
+        background: #cbd5e1;
+        border-radius: 10px;
+        margin: 0 auto 8px;
+    }
+
+    .sheet-title {
+        display: flex;
+        justify-content: space-between;
+        padding: 0 ;
+        font-weight: bold;
+        color: #1a428a;
+    }
+    .sheet-title span{
+        font-size: 20px;
+    }
+
+    .sheet-content {
+        padding: 15px;
+        overflow-y: auto;
+        flex: 1;
+    }
+
+    /* Stop item design */
+    .student-stop-row {
+        display: flex;
+        justify-content: space-between;
+        padding: 12px 0;
+        border-bottom: 1px solid #f1f5f9;
+    }
+
+    .student-stop-row .s-name {
+        font-size: 15px;
+        color: #334155;
+    }
+
+    .student-stop-row .s-time {
+        font-size: 18px;
+        color: #1a428a;
+        font-weight: 700;
+    
+    }
+}
