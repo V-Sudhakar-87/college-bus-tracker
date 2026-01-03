@@ -53,22 +53,6 @@ This project allows students, drivers, and in-charge/admins to track buses live 
 
 ---
 
-## 📂 Project Structure
-college-bus-tracker/
-└── backend/
-├── models/
-├── routes/
-├── middleware/
-├── .env
-├── public/
-│ ├── login/
-│ ├── student/
-│ ├── driver/
-| ├── js/
-│ └── incharge/
-├── server.js
-└── package.json
-
 ## 🔌 Real-Time Communication
 
 - Live location tracking is implemented using **Socket.IO**
