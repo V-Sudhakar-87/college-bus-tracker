@@ -180,6 +180,12 @@ function updateUI(live) {
     document.getElementById('stop-tracking-btn').disabled = !live;
     document.getElementById('route-selector').disabled = live;
 
+    if(!live)
+    {
+        status.innerText = "IDLE";
+        status.className = "status-badge status-idle";
+    }
+
     if (live) {
         status.innerText = "LIVE";
         status.className = "status-badge status-moving";
@@ -344,8 +350,9 @@ function success(pos) {
 
 function getSelectedTripType() {
     const el = document.getElementById('trip-type');
-    return el ? el.value : 'morning';
+    return el ? el.value : '';
 }
+
 document.getElementById('trip-type')?.addEventListener('change', () => {
     const routeId = document.getElementById('route-selector').value;
     if (!routeId) return;
