@@ -117,6 +117,7 @@ async function fetchDriverDetails(token) {
 
 function startTracking() {
     const routeId = document.getElementById('route-selector').value;
+    const busNo = document.getElementById('bus-reg-no').textContent;
     if (!routeId) {
         alert("Please select a route first!");
         return;
@@ -136,7 +137,7 @@ function startTracking() {
         //console.log("Tracking started for route:", routeId);
     }
     if (window.Android && Android.startTracking) {
-        Android.startTracking();
+        Android.startTracking(routeId,busNo);
     }
     
 }
