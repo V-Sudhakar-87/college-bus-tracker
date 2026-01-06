@@ -4,7 +4,7 @@ function checkAuth(requiredRole) {
 
   // Not logged in
   if (!token || !role) {
-    window.location.href = "../login/login.html";
+    window.location.href = "../login/index.html";
     return;
   }
 
