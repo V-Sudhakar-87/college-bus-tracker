@@ -135,6 +135,9 @@ function startTracking() {
         });
         //console.log("Tracking started for route:", routeId);
     }
+    if (window.Android && Android.startTracking) {
+        Android.startTracking();
+    }
     
 }
 
@@ -159,6 +162,9 @@ function stopTracking() {
     document.getElementById('start-tracking-btn').disabled = false;
     document.getElementById('stop-tracking-btn').disabled = true;
     document.getElementById('last-location').textContent = "Tracking Stopped";
+     if (window.Android && Android.stopTracking) {
+        Android.stopTracking();
+    }
 
 }
 
