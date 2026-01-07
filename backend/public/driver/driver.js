@@ -139,9 +139,8 @@ function startTracking() {
         });
         //console.log("Tracking started for route:", routeId);
     }
-    if (isAndroidApp() && window.Android.startTracking) {
+    if (isAndroidApp()) {
         Android.startTracking(routeId, busNo);
-        updateUI(true);
     }
     
 }
