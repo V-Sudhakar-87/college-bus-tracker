@@ -112,6 +112,9 @@ async function fetchDriverDetails(token) {
         console.error('Fetch error:', error);
     }
 }
+function isAndroidApp() {
+    return typeof window.Android !== "undefined";
+}
 
 // LIVE TRACKING LOGIC
 
@@ -125,7 +128,7 @@ function startTracking() {
     noSleep.enable(); 
     socket.emit('join-route', routeId);
     startHeartbeat(routeId);
-    if ("geolocation" in navigator) {
+    if (!isAndroidApp() && "geolocation" in navigator) {
         isTracking = true;
         updateUI(true);
         
@@ -136,8 +139,9 @@ function startTracking() {
         });
         //console.log("Tracking started for route:", routeId);
     }
-    if (window.Android && Android.startTracking) {
-        Android.startTracking(routeId,busNo);
+    if (isAndroidApp() && window.Android.startTracking) {
+        Android.startTracking(routeId, busNo);
+        updateUI(true);
     }
     
 }
@@ -163,7 +167,7 @@ function stopTracking() {
     document.getElementById('start-tracking-btn').disabled = false;
     document.getElementById('stop-tracking-btn').disabled = true;
     document.getElementById('last-location').textContent = "Tracking Stopped";
-     if (window.Android && Android.stopTracking) {
+   if (isAndroidApp() && window.Android.stopTracking) {
         Android.stopTracking();
     }
 
