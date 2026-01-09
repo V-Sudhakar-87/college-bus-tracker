@@ -206,9 +206,9 @@ let stopMarkers = [];
 async function viewRouteOnMap(routeId) {
     selectedRouteId = routeId;
     //console.log("Macha, Loading Route with Markers:", selectedRouteId);
-    if (!liveMap) return;
+   // if (!liveMap) return;
     const token = localStorage.getItem('jwtToken');
-    if (routingControl) {
+   /* if (routingControl) {
         try {
             liveMap.removeControl(routingControl);
             routingControl = null;
@@ -220,7 +220,7 @@ async function viewRouteOnMap(routeId) {
             liveMap.removeLayer(marker);
         }
     });
-    stopMarkers = [];
+    stopMarkers = [];*/
 
     Object.values(liveMarkers).forEach(m => liveMap.removeLayer(m));
     liveMarkers = {};
@@ -237,6 +237,9 @@ async function viewRouteOnMap(routeId) {
         const selectedRoute = routes.find(r => r._id === routeId);
 
         if (!selectedRoute || !selectedRoute.stops || selectedRoute.stops.length === 0) return;
+         if (routingControl) liveMap.removeControl(routingControl);
+        stopMarkers.forEach(marker => liveMap.removeLayer(marker));
+        stopMarkers = [];
 
         const stopCoords = [];
         
