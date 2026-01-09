@@ -131,7 +131,7 @@ function startTracking() {
 
     isTracking=true;
     updateUI(true);
-    
+
     if (!isAndroidApp() && "geolocation" in navigator) {
         //isTracking = true;
        // updateUI(true);
@@ -371,16 +371,16 @@ function success(pos) {
         
     });
 }
-
+let currentTripType = 'morning';
 function getSelectedTripType() {
-    const el = document.getElementById('trip-type');
-    return el ? el.value : '';
+    return currentTripType;
 }
 
-document.getElementById('trip-type')?.addEventListener('change', () => {
-    const routeId = document.getElementById('route-selector').value;
-    if (!routeId) return;
-    fetchDriverDetails(localStorage.getItem('jwtToken'));
+document.getElementById('trip-type')?.addEventListener('change', (e) => {
+    currentTripType = e.target.value;
+    const routeId = document.getElementById('route-selector')?.value;
+    if (routeId) {
+    fetchDriverDetails(localStorage.getItem('jwtToken'));}
 });
 
 let heartbeatInterval = null;
