@@ -128,9 +128,13 @@ function startTracking() {
     noSleep.enable(); 
     socket.emit('join-route', routeId);
     startHeartbeat(routeId);
+
+    isTracking=true;
+    updateUI(true);
+    
     if (!isAndroidApp() && "geolocation" in navigator) {
-        isTracking = true;
-        updateUI(true);
+        //isTracking = true;
+       // updateUI(true);
         
         watchId = navigator.geolocation.watchPosition(success, handleError, {
             enableHighAccuracy: true,
