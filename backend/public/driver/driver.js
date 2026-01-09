@@ -172,6 +172,16 @@ function stopTracking() {
 
 }
 
+function androidLocationUpdate(lat, lng) {
+    const fakePos = {
+        coords: {
+            latitude: lat,
+            longitude: lng
+        }
+    };
+    success(fakePos); // reuse SAME web logic
+}
+
 async function updateLocation(position) {
     const { latitude, longitude } = position.coords;
     const timestamp = new Date().toLocaleTimeString();
