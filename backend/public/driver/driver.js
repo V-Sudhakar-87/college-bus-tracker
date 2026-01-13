@@ -177,36 +177,16 @@ function stopTracking() {
 }
 
 function androidLocationUpdate(lat, lng) {
-   /* const fakePos = {
+ const fakePos = {
         coords: {
             latitude: lat,
-            longitude: lng
-        }
+            longitude: lng,
+            accuracy: 10 // Dummy accuracy
+        },
+        timestamp: Date.now()
     };
-    success(fakePos);*/ // reuse SAME web logic
-     if (!map) {
-        console.warn("Map not ready yet");
-        return;
-    }
-
-    if (!lat || !lng) return;
-
-    const latlng = [lat, lng];
-
-    if (!marker) {
-        marker = L.circleMarker(latlng, {
-            radius: 10,
-            fillColor: "#ff0000",
-            color: "#fff",
-            weight: 2,
-            opacity: 1,
-            fillOpacity: 0.8
-        }).addTo(map);
-    } else {
-        marker.setLatLng(latlng);
-    }
-
-    map.panTo(latlng, { animate: true });
+    success(fakePos); // reuse SAME web logic
+    
 }
 
 async function updateLocation(position) {
