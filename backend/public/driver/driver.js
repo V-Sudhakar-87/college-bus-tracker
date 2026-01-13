@@ -182,8 +182,51 @@ function androidLocationUpdate(lat, lng) {
             latitude: lat,
             longitude: lng
         }
-    };
-    success(fakePos); // reuse SAME web logic
+    }; const now = Date.now();
+    if (now - lastEmitTime < EMIT_INTERVAL) return; 
+
+    lastEmitTime = now;
+    const { latitude, longitude } = fakePos.coords;
+    const latlng = [latitude, longitude];
+    const routeId = document.getElementById('route-selector').value;
+    const busRegNo = document.getElementById('bus-reg-no').textContent;
+
+    if (marker) {
+        
+        marker.setLatLng(latlng);
+        const currentPopup = marker.getPopup();
+        if (currentPopup) {
+            currentPopup.setContent(`<b>Bus ${busRegNo} </b>`);
+        } else {
+            marker.bindPopup(`<b>Bus ${busRegNo} </b>`).openPopup();
+        }
+    } else {
+        marker = L.circleMarker(latlng,  {
+                radius: 10,
+                fillColor: "#ff0000",
+                color: "#fff",
+                weight: 2,
+                opacity: 1,
+                fillOpacity: 0.8
+            }).addTo(map);
+        marker.bindPopup(`<b>Bus ${busRegNo}</b>`);
+    }
+
+    map.panTo(latlng ,{ animate: true });
+
+    document.getElementById('last-location').innerText = 
+        `Lat: ${latitude.toFixed(5)}, Lng: ${longitude.toFixed(5)}`;
+
+    socket.emit('update-location', {
+        routeId: routeId,
+        latitude: latitude,
+        longitude: longitude,
+        busNo: busRegNo,
+        status: 'online' ,
+        tripType: getSelectedTripType()
+        
+    });
+    //success(fakePos); // reuse SAME web logic
 }
 
 async function updateLocation(position) {
