@@ -189,6 +189,19 @@ function androidLocationUpdate(lat, lng) {
     
 }
 
+window.updateMarkerOnMap = function(lat, lng) {
+    const latlng = [lat, lng];
+    
+    document.getElementById('last-location').innerText = `Lat: ${lat.toFixed(5)}, Lng: ${lng.toFixed(5)}`;
+    
+    if (marker) {
+        marker.setLatLng(latlng);
+    } else {
+        marker = L.circleMarker(latlng, { radius: 10, fillColor: "#ff0000" }).addTo(map);
+    }
+    map.panTo(latlng);
+};
+
 async function updateLocation(position) {
     const { latitude, longitude } = position.coords;
     const timestamp = new Date().toLocaleTimeString();
